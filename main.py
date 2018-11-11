@@ -1,7 +1,9 @@
 import unicurses as curses
+from tools import *
 
 name = 'Tuntematon manageri'
 
+# Pääohjelma
 def main():
 	stdscr = curses.initscr()
 	curses.keypad(stdscr, True)
@@ -24,6 +26,7 @@ def main():
 
 	curses.endwin()
 
+# Päävalikko
 def mainmenu():
 	menu_x = 15
 	menu_y = 5
@@ -52,6 +55,7 @@ def mainmenu():
 	elif (cursor_location == 9):
 		return 3
 
+# Uusi peli
 def newgame():
 	global name
 	curses.erase()
@@ -66,14 +70,16 @@ def newgame():
 	curses.mvaddstr(10, 1, "Onko tiedot oikein? (K/E)")
 	while 1:
 		key = curses.getch()
-		if (key == ord('k') or key == ord('K')):
+		if (check_key(key, "k") or key == 27):
 			break
-		elif(key == ord('e') or key == ord('K')):
+		elif(key == ord('e') or key == ord('E')):
 			newgame()
 
+# Luo tietokannat ja muut asetukset
 def create_game():
 	pass
 
+# Pelin päälooppi
 def game_main_loop():
 	running = 1
 	week = 1
@@ -88,7 +94,7 @@ def game_main_loop():
 
 		curses.getch()
 
-
+# Suorita
 if (__name__ == "__main__"):
 	main()
 
